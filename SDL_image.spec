@@ -1,7 +1,7 @@
-Summary:	Simple DirectMedia Layer - Sample Image Loading Library
+Summary:	SDL image loading library
 Name:		SDL_image
 Version:	1.2.12
-Release:	2
+Release:	3
 License:	LGPL
 Group:		Libraries
 Source0:	http://www.libsdl.org/projects/SDL_image/release/%{name}-%{version}.tar.gz
@@ -27,6 +27,7 @@ and PNG formats.
 Summary:	Header files and more to develop SDL_image applications
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	SDL-devel
 
 %description devel
 Header files and more to develop SDL_image applications.
@@ -68,6 +69,8 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 
 install .libs/showimage $RPM_BUILD_ROOT%{_bindir}/sdlshow
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -84,7 +87,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
 %{_includedir}/SDL/*
 %{_pkgconfigdir}/SDL_image.pc
 
